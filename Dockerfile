@@ -1,11 +1,14 @@
-FROM node:20-slim AS base
+FROM node:lts-alpine3.22 AS base
 ENV NEXT_TELEMETRY_DISABLED=1
 
 FROM base AS deps
+
+RUN apk add --no-cache libc6-compat
+
 WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
-RUN corepack enable pnpm && pnpm i --frozen-lockfile --force
+RUN  corepack enable pnpm && pnpm i --frozen-lockfile --force
 
 # Rebuild the source code only when needed ---------------------------------------------------------------
 
