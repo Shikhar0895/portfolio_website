@@ -8,6 +8,21 @@ importers:
 
   .:
     dependencies:
+      '@next/swc-linux-x64-gnu':
+        specifier: ^16.1.6
+        version: 16.1.6
+      '@next/swc-linux-x64-musl':
+        specifier: ^16.1.6
+        version: 16.1.6
+      '@next/swc-wasm-nodejs':
+        specifier: ^16.1.6
+        version: 16.1.6
+      '@tailwindcss/oxide-linux-x64-musl':
+        specifier: ^4.1.18
+        version: 4.1.18
+      lightningcss-linux-x64-musl:
+        specifier: ^1.31.1
+        version: 1.31.1
       next:
         specifier: 16.1.6
         version: 16.1.6(@babel/core@7.29.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -394,14 +409,15 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@next/swc-linux-x64-musl@16.1.6':
     resolution: {integrity: sha512-oicJwRlyOoZXVlxmIMaTq7f8pN9QNbdes0q2FXfRsPhfCi8n8JmOZJm5oo1pwDaFbnnD421rVU409M3evFbIqg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
+
+  '@next/swc-wasm-nodejs@16.1.6':
+    resolution: {integrity: sha512-U9Qpc9JefEXb1ykflZoYdFskAfVemCHNzTwKoG7nyRnO0DMmvitsoQwYl9JCcFVU2tR8MGmJu5cs4jVMiyOEPQ==}
 
   '@next/swc-win32-arm64-msvc@16.1.6':
     resolution: {integrity: sha512-gQmm8izDTPgs+DCWH22kcDmuUp7NyiJgEl18bcr8irXA5N2m2O+JQIr6f3ct42GOs9c0h8QF3L5SzIxcYAAXXw==}
@@ -496,7 +512,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@tailwindcss/oxide-wasm32-wasi@4.1.18':
     resolution: {integrity: sha512-LffYTvPjODiP6PT16oNeUQJzNVyJl1cjIebq/rWWBF+3eDst5JGEFSc5cWxyRCJ0Mxl+KyIkqRxk1XPEs9x8TA==}
@@ -1582,6 +1597,12 @@ packages:
     os: [linux]
     libc: [musl]
 
+  lightningcss-linux-x64-musl@1.31.1:
+    resolution: {integrity: sha512-eowF8PrKHw9LpoZii5tdZwnBcYDxRw2rRCyvAXLi34iyeYfqCQNA9rmUM0ce62NlPhCvof1+9ivRaTY6pSKDaA==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [x64]
+    os: [linux]
+
   lightningcss-win32-arm64-msvc@1.30.2:
     resolution: {integrity: sha512-FZn+vaj7zLv//D/192WFFVA0RgHawIcHqLX9xuWiQt7P0PtdFEVaxgF9rjM/IRYHQXNnk61/H/gb2Ei+kUQ4xQ==}
     engines: {node: '>= 12.0.0'}
@@ -2474,11 +2495,11 @@ snapshots:
   '@next/swc-linux-arm64-musl@16.1.6':
     optional: true
 
-  '@next/swc-linux-x64-gnu@16.1.6':
-    optional: true
+  '@next/swc-linux-x64-gnu@16.1.6': {}
 
-  '@next/swc-linux-x64-musl@16.1.6':
-    optional: true
+  '@next/swc-linux-x64-musl@16.1.6': {}
+
+  '@next/swc-wasm-nodejs@16.1.6': {}
 
   '@next/swc-win32-arm64-msvc@16.1.6':
     optional: true
@@ -2540,8 +2561,7 @@ snapshots:
   '@tailwindcss/oxide-linux-x64-gnu@4.1.18':
     optional: true
 
-  '@tailwindcss/oxide-linux-x64-musl@4.1.18':
-    optional: true
+  '@tailwindcss/oxide-linux-x64-musl@4.1.18': {}
 
   '@tailwindcss/oxide-wasm32-wasi@4.1.18':
     optional: true
@@ -3783,6 +3803,8 @@ snapshots:
 
   lightningcss-linux-x64-musl@1.30.2:
     optional: true
+
+  lightningcss-linux-x64-musl@1.31.1: {}
 
   lightningcss-win32-arm64-msvc@1.30.2:
     optional: true
