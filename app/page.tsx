@@ -1,3 +1,7 @@
 export default function Home() {
-  return <div>Welcome to my demo portfolio website</div>;
+  return (
+    <div className="p-4">
+      Welcome to portfolio demo
+    </div>
+  );
 }
