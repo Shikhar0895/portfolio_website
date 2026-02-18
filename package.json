@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@next/swc-linux-x64-gnu": "^16.1.6",
@@ -19,12 +20,16 @@
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^7.4.3",
+    "@next/eslint-plugin-next": "^16.1.6",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "eslint-plugin-format": "^1.4.0",
+    "eslint-plugin-node": "^11.1.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "webpack": "^5.105.2"
