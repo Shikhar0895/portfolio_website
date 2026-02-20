@@ -21,7 +21,7 @@ jobs:
       - name: Build Image
         run: |
           docker build . \
-            -f Dockerfile -t \
+            -f Dockerfile \
             -t ghcr.io/shikhar0895/nextjs-vps:latest \
             -t ghcr.io/shikhar0895/nextjs-vps:${GITHUB_SHA::7} \
             --label "commit=${GITHUB_SHA}" \
