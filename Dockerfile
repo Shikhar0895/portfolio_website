@@ -17,6 +17,8 @@ FROM base AS builder
 
 WORKDIR /app
 
+ENV HUSKY=0
+
 COPY --from=deps /app/node_modules ./
 COPY . .
 
