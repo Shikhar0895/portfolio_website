@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "dependencies": {
     "@next/swc-linux-x64-gnu": "^16.1.6",

@@ -1,18 +1,50 @@
-# name: Build, Push & Deploy to Hostinger VPS
+name: Build, Push & Deploy to Hostinger VPS
 
-# on:
-#   push:
-#      branches:
-#          - main
+on:
+  push:
+    branches:
+      - main
 
-# jobs:
-#    build-and-deploy:
-#        runs-on: ubuntu-latest
-#        steps:
+env:
+  IMAGE_NAME: nextjs-vps
 
-#            - name: Checkout repository
-#              uses: actions/checkout@v4
-#              with:
-#                 fetch-depth: 0
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
 
-#            - name:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build Image
+        run: |
+          docker build . \
+            -f Dockerfile -t \
+            -t ghcr.io/shikhar0895/nextjs-vps:latest \
+            -t ghcr.io/shikhar0895/nextjs-vps:${GITHUB_SHA::7} \
+            -l "commit=${GITHUB_SHA}" \
+            -l "runnumber=${GITHUB_RUN_ID}"
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" |
+          docker login ghcr.io -u ${{ github.actor }}
+          --password-stdin
+
+      - name: Push image
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          VERSION=$(echo "${{ github.ref }}"  | sed -e 's,.*/\(.*\),\1,' )
+
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] &&
+          VERSION=$(echo $VERSION | sed -e 's/^v//')
+
+          ["$VERSION" = "main"] && VERSION=latest
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
