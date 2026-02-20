@@ -21,11 +21,11 @@ jobs:
       - name: Build Image
         run: |
           docker build . \
-            -f Dockerfile -t \
+            -f Dockerfile \
             -t ghcr.io/shikhar0895/nextjs-vps:latest \
             -t ghcr.io/shikhar0895/nextjs-vps:${GITHUB_SHA::7} \
-            -l "commit=${GITHUB_SHA}" \
-            -l "runnumber=${GITHUB_RUN_ID}"
+            --label "commit=${GITHUB_SHA}" \
+            --label "runnumber=${GITHUB_RUN_ID}"
       - name: Log in to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" |
           docker login ghcr.io -u ${{ github.actor }}
