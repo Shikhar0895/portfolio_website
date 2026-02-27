@@ -9,7 +9,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
-RUN  corepack enable pnpm && pnpm i --frozen-lockfile --force
+RUN corepack enable pnpm && pnpm i --frozen-lockfile --force
 
 # Rebuild the source code only when needed ---------------------------------------------------------------
 
@@ -19,13 +19,13 @@ WORKDIR /app
 
 ENV HUSKY=0
 
-COPY --from=deps /app/node_modules ./
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-RUN corepack enable pnpm && pnpm run build
-RUN rm -rf node_modules \
-  && pnpm install --frozen-lockfile \
-  && pnpm prune --prod
+RUN corepack enable pnpm \
+&& pnpm run build
+
+
 # ------------------------------------------------------------------------------------------------------
 
 FROM base AS runner
@@ -36,8 +36,7 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
-
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
