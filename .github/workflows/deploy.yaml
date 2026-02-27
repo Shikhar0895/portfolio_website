@@ -38,5 +38,5 @@ jobs:
 
           VERSION=latest
 
-          docker tag $IMAGE_ID:$VERSION
+          docker tag nextjs-vps $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
