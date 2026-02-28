@@ -1,6 +1,6 @@
 services:
   web:
-    image: my-nextjs-app:latest
+    image: ghcr.io/shikhar0895/nextjs-vps:latest
     container_name: nextjs_container
     ports:
       - "3000:3000"
